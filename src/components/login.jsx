@@ -1,8 +1,17 @@
 import { useState } from "react";
 import { Input } from "../ui/constants";
+import { useSelector, useDispatch } from "react-redux";
+import { logginUserStart } from "../slice/auth";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+  const { isLoading } = useSelector((state) => state.auth);
+
+  const loginHandler = (e) => {
+    e.preventDefault();
+    dispatch(logginUserStart());
+  };
   return (
     <div className="text-center mt-5">
       <main className="form-signin w-25 m-auto">
@@ -24,8 +33,13 @@ function Login() {
           />
 
           <div className="form-check text-start my-3"></div>
-          <button className="btn btn-primary w-100 py-2" type="submit">
-            Sign in
+          <button
+            className="btn btn-primary w-100 py-2"
+            type="submit"
+            onClick={loginHandler}
+            disabled={isLoading}
+          >
+            {isLoading ? "Loading..." : "Login"}
           </button>
         </form>
       </main>

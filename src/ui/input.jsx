@@ -11,7 +11,7 @@ function Input({ label, margin, type, state, setState }) {
         value={state}
         onChange={(e) => setState(e.target.value)}
       />
-      <label for="floatingInput">{label}</label>
+      <label htmlFor="floatingInput">{label}</label>
     </div>
   );
 }
