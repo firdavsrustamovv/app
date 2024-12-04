@@ -3,6 +3,7 @@ import { Input } from "../ui/constants";
 import { useSelector, useDispatch } from "react-redux";
 import { signUserStart, signUserSuccess, signUserFailure } from "../slice/auth";
 import AuthService from "../service/auth";
+import { ValidationError } from "./";
 
 function Register() {
   const [name, setName] = useState("");
@@ -18,7 +19,6 @@ function Register() {
       const response = await AuthService.userRegister(user);
       dispatch(signUserSuccess(response.user));
     } catch (error) {
-      console.log(error.response.data);
       dispatch(signUserFailure(error.response.data));
     }
   };
@@ -27,6 +27,7 @@ function Register() {
       <main className="form-signin w-25 m-auto">
         <form>
           <h1 className="h3 mb-3 fw-normal">Please Register</h1>
+          <ValidationError />
           <Input
             label={"Username"}
             type={"text"}

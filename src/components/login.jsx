@@ -3,6 +3,7 @@ import { Input } from "../ui/constants";
 import { useSelector, useDispatch } from "react-redux";
 import { signUserFailure, signUserStart, signUserSuccess } from "../slice/auth";
 import AuthService from "../service/auth";
+import { ValidationError } from "./";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -26,6 +27,7 @@ function Login() {
       <main className="form-signin w-25 m-auto">
         <form>
           <h1 className="h3 mb-3 fw-normal">Please Login</h1>
+          <ValidationError />
           <Input
             label={"Email address"}
             type={"email"}
