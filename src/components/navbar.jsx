@@ -1,6 +1,8 @@
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
 function Navbar() {
+  const { loggedIn, user } = useSelector((state) => state.auth);
   return (
     <div className="container">
       <header className="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
@@ -12,26 +14,37 @@ function Navbar() {
         </a>
 
         <ul className="nav nav-pills">
-          <li className="nav-item">
-            <NavLink
-              to={"/login"}
-              className={({ isActive }) =>
-                isActive ? "nav-link active" : "nav-link"
-              }
-            >
-              Login
-            </NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink
-              to={"/register"}
-              className={({ isActive }) =>
-                isActive ? "nav-link active" : "nav-link"
-              }
-            >
-              Register
-            </NavLink>
-          </li>
+          {loggedIn ? (
+            <>
+              <p className="me-3 py-2 m-0 text-dark text-decoration-none ">
+                {user.username}
+              </p>
+              <button className="btn btn-outline-danger">Logout</button>
+            </>
+          ) : (
+            <>
+              <li className="nav-item">
+                <NavLink
+                  to={"/login"}
+                  className={({ isActive }) =>
+                    isActive ? "nav-link active" : "nav-link"
+                  }
+                >
+                  Login
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink
+                  to={"/register"}
+                  className={({ isActive }) =>
+                    isActive ? "nav-link active" : "nav-link"
+                  }
+                >
+                  Register
+                </NavLink>
+              </li>
+            </>
+          )}
         </ul>
       </header>
     </div>
