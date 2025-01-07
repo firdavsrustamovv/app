@@ -29,9 +29,20 @@ function Navbar() {
               <p className="me-3 py-2 m-0 text-dark text-decoration-none ">
                 {user.username}
               </p>
+              <li>
+                <NavLink
+                  to={"/create-article"}
+                  className={({ isActive }) =>
+                    isActive ? "nav-link active" : "nav-link"
+                  }
+                >
+                  Create
+                </NavLink>
+              </li>
               <button
                 className="btn btn-outline-danger"
                 onClick={logOutHandler}
+                style={{ marginLeft: "10px" }}
               >
                 Logout
               </button>
