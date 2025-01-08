@@ -30,6 +30,16 @@ export const articleSlice = createSlice({
     getArticleDetailFailure: (state) => {
       state.isLoading = false;
     },
+    postArticleStart: (state) => {
+      state.isLoading = true;
+    },
+    postArticleSuccess: (state, action) => {
+      state.isLoading = false;
+      // state.articles.push(action.payload);
+    },
+    postArticleFailure: (state) => {
+      state.isLoading = false;
+    },
   },
 });
 export const {
@@ -39,5 +49,8 @@ export const {
   getArticleDetailStart,
   getArticleDetailSuccess,
   getArticleDetailFailure,
+  postArticleStart,
+  postArticleSuccess,
+  postArticleFailure,
 } = articleSlice.actions;
 export default articleSlice.reducer;
