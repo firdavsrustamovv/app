@@ -42,6 +42,8 @@ const CreateArticle = () => {
         body={body}
         setBody={setBody}
         formSubmit={formSubmit}
+        create={"Create"}
+        buttonName={"Create"}
       />
     </div>
   );
